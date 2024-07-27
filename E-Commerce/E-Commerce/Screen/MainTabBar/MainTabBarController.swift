@@ -28,8 +28,8 @@ class MainTabBarController: UITabBarController {
     
     private func homeController() -> UINavigationController {
         let homeVC = HomeController()
-        homeVC.title = "StoreA"
-        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        homeVC.title = "E-Commerce"
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "fi_9643115"), selectedImage: UIImage(named: "fi_9664027"))
         
         return UINavigationController(rootViewController: homeVC)
     }
@@ -37,7 +37,7 @@ class MainTabBarController: UITabBarController {
     private func searchController() -> UINavigationController {
         let searchVC = HomeController()
         searchVC.title = "Search"
-        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
+        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "search1"), selectedImage: UIImage(named: "search2"))
         
         return UINavigationController(rootViewController: searchVC)
     }
@@ -45,7 +45,7 @@ class MainTabBarController: UITabBarController {
     private func cartController() -> UINavigationController {
         let cartVC = HomeController()
         cartVC.title = "Cart"
-        cartVC.tabBarItem = UITabBarItem(title: "Cart", image: UIImage(systemName: "cart"), selectedImage: UIImage(systemName: "cart.fill" ))
+        cartVC.tabBarItem = UITabBarItem(title: "Cart", image: UIImage(named: "cart1"), selectedImage: UIImage(named: "cart2" ))
         
         return UINavigationController(rootViewController: cartVC)
     }

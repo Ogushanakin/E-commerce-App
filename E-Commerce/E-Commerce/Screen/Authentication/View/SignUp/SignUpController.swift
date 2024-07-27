@@ -70,7 +70,7 @@ final class SignUpController: UIViewController {
     
 }
 
-extension SignUpController: SignUpViewProtocol {
+extension SignUpController: SignUpViewInterface {
     func signUpView(_ view: SignUpView, signUpButtonTapped button: UIButton) {
         
         guard checkPasswordMatch() == true else { Alert.alertMessage(title: "Passwords do not match.", message: "", vc: self); return }

@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: - SignInViewInterface Protocol
 
-protocol SignInViewProtocol: AnyObject {
+protocol SignInViewInterface: AnyObject {
     func signInView(_ view: SignInView, forgotPasswordButtonTapped button: UIButton)
     func signInView(_ view: SignInView, signInButtonTapped button: UIButton)
     func signInView(_ view: SignInView, signUpButtonTapped button: UIButton)
@@ -17,7 +17,7 @@ protocol SignInViewProtocol: AnyObject {
 
 final class SignInView: UIView {
 
-    weak var interface: SignInViewProtocol?
+    weak var interface: SignInViewInterface?
     
     //MARK: - Creating UI Elements
     

@@ -50,7 +50,7 @@ final class SignInController: UIViewController {
     }
 }
 
-extension SignInController: SignInViewProtocol {
+extension SignInController: SignInViewInterface {
     
     func signInView(_ view: SignInView, forgotPasswordButtonTapped button: UIButton) {
 //        let resetPasswordVC = ResetPasswordController()
