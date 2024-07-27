@@ -137,24 +137,16 @@ extension HomeController: ProductsViewModelDelegate {
  
 
     func didFetchSingleProduct(_ product: Product) {
-//        let controller = ProductDetailController(product: product)
-//        navigationController?.pushViewController(controller, animated: true)
+        let controller = ProductDetailController(product: product)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func didOccurError(_ error: Error) {
         print(error.localizedDescription)
     }
-    func didFetchSpecialProductsSuccessful() {
-//        homeView.pageControl.numberOfPages = productsViewModel.specialProducts.count
-//        homeView.specialCollection.reloadData()
-    }
     
     func didFetchAllProductsSuccessful() {
         homeView.productCollection.reloadData()
-    }
-    
-    func didFetchAllCategories() {
-//        homeView.categoryCollection.reloadData()
     }
     
     func didFetchProductsByCategorySuccessful() {
