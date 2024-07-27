@@ -10,7 +10,7 @@ import UIKit
 final class CustomTextField: UITextField {
     
     override init(frame: CGRect) {
-        super.init(frame: frame )
+        super.init(frame: frame)
         configure()
     }
     
@@ -18,13 +18,14 @@ final class CustomTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(isSecureTextEntry: Bool? = nil ,attributedPlaceholder: NSAttributedString, image: UIImage) {
+    convenience init(isSecureTextEntry: Bool? = nil, attributedPlaceholder: NSAttributedString, image: UIImage) {
         self.init(frame: .zero)
-        set(isSecureTextEntry: isSecureTextEntry ,attributedPlaceholder: attributedPlaceholder, image: image)
+        set(isSecureTextEntry: isSecureTextEntry, attributedPlaceholder: attributedPlaceholder, image: image)
     }
     
     private func configure() {
         autocapitalizationType = .none
+        autocorrectionType = .no
         textColor = .black
         backgroundColor = .white
         leftViewMode = .always
@@ -32,15 +33,34 @@ final class CustomTextField: UITextField {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func set(isSecureTextEntry: Bool? = nil ,attributedPlaceholder: NSAttributedString, image: UIImage) {
+    private func set(isSecureTextEntry: Bool? = nil, attributedPlaceholder: NSAttributedString, image: UIImage) {
         self.attributedPlaceholder = attributedPlaceholder
-        let imageView = UIImageView()
-        let image = image
-        imageView.image = image
+        
+        let imageView = UIImageView(image: image)
         imageView.tintColor = .systemGray
-        leftView = imageView
+        
+        // Container view for leftView
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: image.size.width + 10, height: image.size.height))
+        imageView.center = view.center
+        view.addSubview(imageView)
+        
+        leftView = view
+        
         if let isSecureTextEntry = isSecureTextEntry {
             self.isSecureTextEntry = isSecureTextEntry
         }
+    }
+    
+    // Override textRect and editingRect to add padding
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: 35, dy: 0) // Adjust left padding
+    }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: 35, dy: 0) // Adjust left padding
+    }
+    
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: 35, dy: 0) // Adjust left padding
     }
 }

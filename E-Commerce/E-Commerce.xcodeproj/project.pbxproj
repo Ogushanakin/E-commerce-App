@@ -36,6 +36,9 @@
 		211CCB3B2C543F1300DA1983 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB3A2C543F1300DA1983 /* Extensions.swift */; };
 		211CCB3E2C54409500DA1983 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB3D2C54409500DA1983 /* CustomAlert.swift */; };
 		211CCB402C54431400DA1983 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 211CCB3F2C54431400DA1983 /* GoogleService-Info.plist */; };
+		211CCB422C550A6E00DA1983 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB412C550A6E00DA1983 /* SignInView.swift */; };
+		211CCB452C550CCA00DA1983 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB442C550CCA00DA1983 /* MainTabBarController.swift */; };
+		211CCB482C550CEB00DA1983 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB472C550CEB00DA1983 /* HomeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		211CCB3A2C543F1300DA1983 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		211CCB3D2C54409500DA1983 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		211CCB3F2C54431400DA1983 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		211CCB412C550A6E00DA1983 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		211CCB442C550CCA00DA1983 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		211CCB472C550CEB00DA1983 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				211CCB232C5439F300DA1983 /* Authentication */,
+				211CCB432C550CAF00DA1983 /* MainTabBar */,
+				211CCB462C550CD800DA1983 /* Home */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -232,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				211CCAEE2C54315500DA1983 /* SignInController.swift */,
+				211CCB412C550A6E00DA1983 /* SignInView.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -254,6 +263,22 @@
 				211CCB3A2C543F1300DA1983 /* Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		211CCB432C550CAF00DA1983 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB442C550CCA00DA1983 /* MainTabBarController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		211CCB462C550CD800DA1983 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB472C550CEB00DA1983 /* HomeController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +369,8 @@
 			files = (
 				211CCB2A2C543C5E00DA1983 /* AuthViewModel.swift in Sources */,
 				211CCB1F2C54369D00DA1983 /* NetworkHelper.swift in Sources */,
+				211CCB482C550CEB00DA1983 /* HomeController.swift in Sources */,
+				211CCB452C550CCA00DA1983 /* MainTabBarController.swift in Sources */,
 				211CCB192C54360300DA1983 /* WebService.swift in Sources */,
 				211CCB3E2C54409500DA1983 /* CustomAlert.swift in Sources */,
 				211CCB2C2C543C7B00DA1983 /* SignUpController.swift in Sources */,
@@ -352,6 +379,7 @@
 				211CCB302C543CBE00DA1983 /* SignUpView.swift in Sources */,
 				211CCAEF2C54315500DA1983 /* SignInController.swift in Sources */,
 				211CCB172C5435D400DA1983 /* Product.swift in Sources */,
+				211CCB422C550A6E00DA1983 /* SignInView.swift in Sources */,
 				211CCB1D2C54368C00DA1983 /* NetworkManager.swift in Sources */,
 				211CCB282C543C4700DA1983 /* User.swift in Sources */,
 				211CCB332C543E3D00DA1983 /* CustomLabel.swift in Sources */,

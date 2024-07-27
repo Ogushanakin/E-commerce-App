@@ -10,14 +10,14 @@ import SnapKit
 
 //MARK: - SignUpViewInterface Protocol
 
-protocol SignUpViewInterface: AnyObject {
+protocol SignUpViewProtocol: AnyObject {
     func signUpView(_ view: SignUpView, signUpButtonTapped button: UIButton)
     func signUpView(_ view: SignUpView, signInButtonTapped button: UIButton)
 }
 
 final class SignUpView: UIView {
 
-    weak var interface: SignUpViewInterface?
+    weak var interface: SignUpViewProtocol?
     
     //MARK: - Creating UI Elements
     

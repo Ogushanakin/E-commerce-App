@@ -59,7 +59,7 @@ final class SignUpController: UIViewController {
     
     private func setupDelegates() {
         signUpView.interface = self
-//        authViewModel.delegate = self
+        authViewModel.delegate = self
     }
     
     //MARK: - CheckPasswordMatch
@@ -70,7 +70,7 @@ final class SignUpController: UIViewController {
     
 }
 
-extension SignUpController: SignUpViewInterface {
+extension SignUpController: SignUpViewProtocol {
     func signUpView(_ view: SignUpView, signUpButtonTapped button: UIButton) {
         
         guard checkPasswordMatch() == true else { Alert.alertMessage(title: "Passwords do not match.", message: "", vc: self); return }
@@ -79,8 +79,8 @@ extension SignUpController: SignUpViewInterface {
     }
     
     func signUpView(_ view: SignUpView, signInButtonTapped button: UIButton) {
-//        let signInVC = SignInController()
-//        navigationController?.pushViewController(signInVC, animated: true)
+        let signInVC = SignInController()
+        navigationController?.pushViewController(signInVC, animated: true)
     }
     
 }
@@ -92,8 +92,8 @@ extension SignUpController: AuthViewModelDelegate {
     
     func didSignUpSuccessful() {
         Alert.alertMessage(title: "Successful!", message: "", vc: self)
-//        let signInVC = SignInController()
-//        navigationController?.pushViewController(signInVC, animated: true)
+        let signInVC = SignInController()
+        navigationController?.pushViewController(signInVC, animated: true)
     }
     
     func didSignInSuccessful() {
@@ -101,4 +101,3 @@ extension SignUpController: AuthViewModelDelegate {
     }
     
 }
-
