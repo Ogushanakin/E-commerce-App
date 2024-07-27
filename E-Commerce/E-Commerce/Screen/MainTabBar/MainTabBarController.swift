@@ -43,7 +43,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func cartController() -> UINavigationController {
-        let cartVC = HomeController()
+        let cartVC = CartController()
         cartVC.title = "Cart"
         cartVC.tabBarItem = UITabBarItem(title: "Cart", image: UIImage(named: "cart1"), selectedImage: UIImage(named: "cart2" ))
         

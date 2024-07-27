@@ -114,13 +114,11 @@ final class ProductDetailView: UIView {
     @objc private func stepperPlusButtonTapped(_ button: UIButton) {
         quantity = quantity + 1
         interface?.productDetailView(self, stepperValueChanged: quantity)
-        
     }
     
     @objc private func stepperMinusButtonTapped(_ button: UIButton) {
         quantity = quantity - 1
         interface?.productDetailView(self, stepperValueChanged: quantity)
-        
     }
     
     @objc private func addToWishListButtonTapped(_ button: UIButton) {
@@ -240,7 +238,7 @@ extension ProductDetailView {
     private func favButtonConstraints() {
         addToWishListButton.snp.makeConstraints { make in
             make.width.equalTo(30)
-            make.height.equalTo(65)
+            make.height.equalTo(60)
         }
     }
     
@@ -256,7 +254,7 @@ extension ProductDetailView {
     private func salesAmountViewConstraints() {
         salesAmountView.snp.makeConstraints { make in
             make.width.equalTo(100)
-            make.height.equalTo(35)
+            make.height.equalTo(0)
             make.top.equalTo(favButtonTitleStackView.snp.bottom).offset(10)
             make.leading.equalTo(favButtonTitleStackView.snp.leading)
         }
@@ -267,6 +265,7 @@ extension ProductDetailView {
             make.centerX.equalTo(salesAmountView.snp.centerX)
             make.centerY.equalTo(salesAmountView.snp.centerY)
         }
+        salesAmountLabel.isHidden = true
     }
     
     private func ratingCountStackViewConstraints() {
@@ -274,6 +273,7 @@ extension ProductDetailView {
             make.centerY.equalTo(salesAmountView.snp.centerY)
             make.leading.equalTo(salesAmountView.snp.trailing).offset(10)
         }
+        ratingCountStackView.isHidden = true
     }
     
     private func seperatorViewConstraints() {
@@ -287,7 +287,7 @@ extension ProductDetailView {
     
     private func descriptionViewConstraints() {
         descriptionView.snp.makeConstraints { make in
-            make.top.equalTo(salesAmountView.snp.bottom).offset(20)
+            make.top.equalTo(salesAmountView.snp.bottom).offset(10)
             make.leading.equalTo(seperatorView.snp.leading)
             make.trailing.equalTo(seperatorView.snp.trailing)
             make.bottom.equalTo(seperatorView2.snp.top).offset(-10)

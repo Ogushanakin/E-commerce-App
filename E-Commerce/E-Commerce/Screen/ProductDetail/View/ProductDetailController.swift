@@ -36,12 +36,17 @@ final class ProductDetailController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.tabBarController?.tabBar.isHidden = true
         if let productId = product.id {
             productDetailViewModel.fetchCart(productId: productId)
             productDetailViewModel.fetchWishList(productId: productId)
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.tabBarController?.tabBar.isHidden = false
+    }
     
     //MARK: - ConfigureViewControler
     
@@ -54,11 +59,9 @@ final class ProductDetailController: UIViewController {
     
     private func setupDelegates() {
         productDetailView.interface = self
-        
         productDetailViewModel.delegate = self
     }
 
-    
 }
 
 //MARK: - ProductDetailViewModelDelegate
@@ -73,7 +76,6 @@ extension ProductDetailController: ProductDetailViewModelDelegate {
         if let productId = product.id {
             productDetailViewModel.fetchCart(productId: productId)
         }
-        
     }
     
     func didFetchCartCountSuccessful() {
@@ -96,7 +98,6 @@ extension ProductDetailController: ProductDetailViewModelDelegate {
             productDetailView.stepperStackView.isHidden = true
             productDetailView.quantityLabel.isHidden = true
         }
-        
     }
     
     func didFetchWishListSuccessful(productId: Int) {
@@ -121,7 +122,6 @@ extension ProductDetailController: ProductDetailViewInterface {
     func productDetailView(_ view: ProductDetailView, addToCartButtonTapped button: UIButton, quantity: Int) {
         guard let id = product.id else { return }
         productDetailViewModel.updateCart(productId: id, quantity: quantity)
-        
     }
     
     func productDetailView(_ view: ProductDetailView, stepperValueChanged quantity: Int) {
