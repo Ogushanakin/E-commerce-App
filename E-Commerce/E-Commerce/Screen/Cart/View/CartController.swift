@@ -93,21 +93,26 @@ extension CartController: UICollectionViewDelegate, UICollectionViewDataSource, 
 //MARK: - CartViewInterface
 
 extension CartController: CartViewInterface {
+    
     func cartView(_ view: CartView, checkoutButtonTapped button: UIButton) {
-        let paymentVC = PaymentDetailsViewController()
-        paymentVC.amountLabel.text = "$\(cartViewModel.totalCost)"
-        paymentVC.onPaymentInitiated = { [weak self] in
-            let otpVC = OTPViewController()
-            otpVC.onOTPVerified = { [weak self] success in
-                if success {
-                    self?.cartViewModel.checkout()
-                } else {
-                    Alert.alertMessage(title: "Error", message: "OTP verification failed.", vc: self!)
+        if cartViewModel.cartsProducts.isEmpty {
+            Alert.alertMessage(title: "Cart is empty!", message: "Please add items to your cart.", vc: self)
+        } else {
+            let paymentVC = PaymentDetailsViewController()
+            paymentVC.viewModel.updateAmount("Total Price: $\(cartViewModel.totalCost)")
+            paymentVC.onPaymentInitiated = { [weak self] in
+                let otpVC = OTPViewController()
+                otpVC.onOTPVerified = { [weak self] success in
+                    if success {
+                        self?.cartViewModel.checkout()
+                    } else {
+                        Alert.alertMessage(title: "Error", message: "OTP verification failed.", vc: self!)
+                    }
                 }
+                self?.navigationController?.pushViewController(otpVC, animated: true)
             }
-            self?.navigationController?.pushViewController(otpVC, animated: true)
+            navigationController?.pushViewController(paymentVC, animated: true)
         }
-        navigationController?.pushViewController(paymentVC, animated: true)
     }
 }
 
