@@ -530,9 +530,9 @@
 		211CCB972C56387B00DA1983 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				211CCBAB2C567F3C00DA1983 /* Cell */,
 				211CCB9B2C5638A600DA1983 /* OrderHistoryController.swift */,
 				211CCB9D2C5638C200DA1983 /* OrderHistoryView.swift */,
-				211CCB9F2C563AAF00DA1983 /* OrderCollectionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -560,6 +560,14 @@
 				211CCBA92C56645A00DA1983 /* OTPController.swift */,
 			);
 			path = PaymentModule;
+			sourceTree = "<group>";
+		};
+		211CCBAB2C567F3C00DA1983 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB9F2C563AAF00DA1983 /* OrderCollectionCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -95,7 +95,7 @@ extension CartController: UICollectionViewDelegate, UICollectionViewDataSource, 
 extension CartController: CartViewInterface {
     func cartView(_ view: CartView, checkoutButtonTapped button: UIButton) {
         let paymentVC = PaymentDetailsViewController()
-        
+        paymentVC.amountLabel.text = "$\(cartViewModel.totalCost)"
         paymentVC.onPaymentInitiated = { [weak self] in
             let otpVC = OTPViewController()
             otpVC.onOTPVerified = { [weak self] success in
