@@ -9,7 +9,7 @@ import UIKit
 
 protocol OrderCollectionCellProtocol {
     var orderDate: String { get }
-    var products: [OrderProduct] { get }
+    var products: [Product] { get }
 }
 
 final class OrderCollectionCell: UICollectionViewCell {
@@ -47,7 +47,10 @@ final class OrderCollectionCell: UICollectionViewCell {
         productListStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
         for product in data.products {
-            let productLabel = CustomLabel(text: "\(product.title) - \(product.quantity) x $\(product.priceAsDouble)", numberOfLines: 1, font: .systemFont(ofSize: 14), textColor: .black, textAlignment: .left)
+            let productTitle = product.title ?? "Unknown"
+            let productQuantity = product.quantity ?? 0
+            let productPrice = product.price ?? 0.0
+            let productLabel = CustomLabel(text: "\(productTitle) - \(productQuantity) x $\(productPrice)", numberOfLines: 1, font: .systemFont(ofSize: 14), textColor: .black, textAlignment: .left)
             productListStackView.addArrangedSubview(productLabel)
         }
     }

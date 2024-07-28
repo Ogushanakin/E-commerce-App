@@ -8,49 +8,10 @@
 import Foundation
 import FirebaseFirestore
 
-struct OrderProduct: Codable {
-    let id: Int
-    let title: String
-    let price: String
-    let quantity: Int
-    
-    init(id: Int, title: String, price: String, quantity: Int) {
-        self.id = id
-        self.title = title
-        self.price = price
-        self.quantity = quantity
-    }
-    
-    init(dictionary: [String: Any]) {
-        self.id = dictionary["id"] as? Int ?? 0
-        self.title = dictionary["title"] as? String ?? ""
-        self.price = dictionary["price"] as? String ?? "0.0"
-        self.quantity = dictionary["quantity"] as? Int ?? 0
-        print("Initialized OrderProduct with dictionary: \(dictionary)")
-    }
-    
-    var toDictionary: [String: Any] {
-        return [
-            "id": id,
-            "title": title,
-            "price": price,
-            "quantity": quantity
-        ]
-    }
-    
-    var priceAsDouble: Double {
-        return Double(price) ?? 0.0
-    }
-}
-
-
-import Foundation
-import FirebaseFirestore
-
 struct Order: Codable {
     var id: String
     var date: Date
-    var products: [OrderProduct]
+    var products: [Product]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -58,7 +19,7 @@ struct Order: Codable {
         case products
     }
     
-    init(id: String, date: Date, products: [OrderProduct]) {
+    init(id: String, date: Date, products: [Product]) {
         self.id = id
         self.date = date
         self.products = products
@@ -94,7 +55,7 @@ extension Order {
         self.date = timestamp.dateValue()
         self.products = productData.compactMap { dictionary in
             print("Product dictionary: \(dictionary)")
-            return OrderProduct(dictionary: dictionary)
+            return Product(dictionary: dictionary)
         }
     }
 }

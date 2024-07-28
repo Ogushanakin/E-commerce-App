@@ -8,7 +8,7 @@
 import Foundation
 
 struct Product: Codable, ProductCollectionCellProtocol, ProductDetailViewProtocol, CartCollectionCellProtocol {
-
+    
     let id: Int?
     let title: String?
     let price: Double?
@@ -16,11 +16,12 @@ struct Product: Codable, ProductCollectionCellProtocol, ProductDetailViewProtoco
     let category: Category?
     let image: String?
     let rating: Rating?
-
+    let quantity: Int? // quantity field added
+    
     enum CodingKeys: String, CodingKey {
         case id, title, price
         case productDescription = "description"
-        case category, image, rating
+        case category, image, rating, quantity
     }
     
     init(dictionary: [String: Any]) {
@@ -31,6 +32,7 @@ struct Product: Codable, ProductCollectionCellProtocol, ProductDetailViewProtoco
         self.category = Category(rawValue: dictionary["category"] as? String ?? "")
         self.image = dictionary["image"] as? String
         self.rating = Rating(dictionary: dictionary["rating"] as? [String: Any] ?? [:])
+        self.quantity = dictionary["quantity"] as? Int // quantity initialization
     }
     
     var toDictionary: [String: Any] {
@@ -41,7 +43,8 @@ struct Product: Codable, ProductCollectionCellProtocol, ProductDetailViewProtoco
             "description": productDescription ?? "",
             "category": category?.rawValue ?? "",
             "image": image ?? "",
-            "rating": rating?.toDictionary ?? [:]
+            "rating": rating?.toDictionary ?? [:],
+            "quantity": quantity ?? 0 // quantity added to dictionary
         ]
     }
     
@@ -72,7 +75,7 @@ struct Product: Codable, ProductCollectionCellProtocol, ProductDetailViewProtoco
             return "\(rating)"
         }
         return ""
-       
+        
     }
     
     var productSalesAmount: String {
