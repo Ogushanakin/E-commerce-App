@@ -24,7 +24,7 @@ final class CartView: UIView {
     private var priceTitle = CustomLabel(text: "Total price", numberOfLines: 0, font: .systemFont(ofSize: 15), textColor: .gray, textAlignment: .left)
     var priceLabel = CustomLabel(text: "", numberOfLines: 0, font: .boldSystemFont(ofSize: 25), textColor: .black, textAlignment: .center)
     private var priceStackView = CustomStackView(axis: .vertical, distiribution: .fillEqually, spacing: 0, isHidden: false)
-    private var checkoutButton = CustomButton(title: "Checkout", titleColor: .white, backgroundColor: #colorLiteral(red: 0.9821694493, green: 0.2583739161, blue: 0.4088498354, alpha: 1), cornerRadius: 25, image: UIImage(systemName: "checkmark.shield.fill"), tintColor: .white, imageEdgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10), titleEdgeInsets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
+    private var checkoutButton = CustomButton(title: "Complete Purchase", titleColor: .white, backgroundColor: #colorLiteral(red: 0.9821694493, green: 0.2583739161, blue: 0.4088498354, alpha: 1), cornerRadius: 25, image: UIImage(systemName: "checkmark.shield.fill"), tintColor: .white, imageEdgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10), titleEdgeInsets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
     
     //MARK: - Init methods
     

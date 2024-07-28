@@ -6,13 +6,17 @@
 //
 
 import UIKit
+import SnapKit
 
-class OTPViewController: UIViewController {
+class OTPViewController: UIViewController, UITextFieldDelegate {
     
     var onOTPVerified: ((Bool) -> Void)?
-    
-    private let otpTextField = UITextField()
+
+    private let otpStackView = UIStackView()
     private let confirmPaymentButton = UIButton()
+    private var otpTextFields = [UITextField]()
+    
+    private let numberOfFields = 6
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +26,16 @@ class OTPViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        otpTextField.borderStyle = .roundedRect
-        otpTextField.placeholder = "OTP"
-        view.addSubview(otpTextField)
+        otpStackView.axis = .horizontal
+        otpStackView.spacing = 10
+        otpStackView.distribution = .fillEqually
+        view.addSubview(otpStackView)
+        
+        for _ in 0..<numberOfFields {
+            let textField = createOTPTextField()
+            otpStackView.addArrangedSubview(textField)
+            otpTextFields.append(textField)
+        }
         
         confirmPaymentButton.setTitle("Confirm Payment", for: .normal)
         confirmPaymentButton.setTitleColor(.white, for: .normal)
@@ -34,10 +45,20 @@ class OTPViewController: UIViewController {
         view.addSubview(confirmPaymentButton)
         
         setupConstraints()
+}
+    
+    private func createOTPTextField() -> UITextField {
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.textAlignment = .center
+        textField.keyboardType = .numberPad
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        return textField
     }
     
     private func setupConstraints() {
-        otpTextField.snp.makeConstraints { make in
+        otpStackView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
             make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-20)
@@ -45,16 +66,33 @@ class OTPViewController: UIViewController {
         }
         
         confirmPaymentButton.snp.makeConstraints { make in
-            make.top.equalTo(otpTextField.snp.bottom).offset(20)
+            make.top.equalTo(otpStackView.snp.bottom).offset(20)
             make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
             make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-20)
             make.height.equalTo(50)
         }
     }
     
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        
+        if text.count == 1 {
+            if let index = otpTextFields.firstIndex(of: textField), index < numberOfFields - 1 {
+                otpTextFields[index + 1].becomeFirstResponder()
+            }
+        } else if text.count == 0 {
+            if let index = otpTextFields.firstIndex(of: textField), index > 0 {
+                otpTextFields[index - 1].becomeFirstResponder()
+            }
+        }
+    }
+
+    
     @objc private func confirmPayment() {
-        guard let otp = otpTextField.text else {
-            showAlert(message: "Please enter OTP.")
+        let otp = otpTextFields.map { $0.text ?? "" }.joined()
+        
+        guard otp.count == numberOfFields else {
+            showAlert(message: "Please enter the complete OTP.")
             return
         }
         
@@ -63,7 +101,7 @@ class OTPViewController: UIViewController {
                 switch result {
                 case .success:
                     self?.onOTPVerified?(true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
                         self?.navigationController?.popToRootViewController(animated: true)
                     })
                 case .failure(let error):

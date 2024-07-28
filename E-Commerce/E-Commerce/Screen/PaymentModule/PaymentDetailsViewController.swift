@@ -93,7 +93,6 @@ class PaymentDetailsViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    // Notify the caller to initiate OTP verification
                     self?.onPaymentInitiated?()
                 case .failure(let error):
                     self?.showAlert(message: error.localizedDescription)
