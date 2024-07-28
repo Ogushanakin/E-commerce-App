@@ -1,16 +1,23 @@
 //
-//  ViewController.swift
+//  PaymentDetailView.swift
 //  E-Commerce
 //
 //  Created by Oğuzhan Akın on 28.07.2024.
 //
 
 import UIKit
-import SnapKit
 
-class PaymentDetailsViewController: UIViewController, UITextFieldDelegate {
+protocol PaymentDetailsViewInterface: AnyObject {
+    func paymentDetailsView(_ view: PaymentDetailsView, didUpdateCardNumber cardNumber: String)
+    func paymentDetailsView(_ view: PaymentDetailsView, didUpdateExpiryDate expiryDate: String)
+    func paymentDetailsView(_ view: PaymentDetailsView, didUpdateCVV cvv: String)
+    func paymentDetailsView(_ view: PaymentDetailsView, didUpdateAmount amount: String)
+    func paymentDetailsViewDidTapStartPayment(_ view: PaymentDetailsView)
+}
+
+final class PaymentDetailsView: UIView {
     
-    var onPaymentInitiated: (() -> Void)?
+    // MARK: - UI Elements
     
     private let cardNumberTextField = CustomTextField(attributedPlaceholder: NSAttributedString(string: "Credit Card Number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray]), image: UIImage(systemName: "creditcard.fill")!)
     private let expiryDateTextField = CustomTextField(attributedPlaceholder: NSAttributedString(string: "Expiry Date (MM/YY)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray]), image: UIImage(systemName: "calendar")!)
@@ -18,23 +25,36 @@ class PaymentDetailsViewController: UIViewController, UITextFieldDelegate {
     let amountLabel = UILabel()
     private let startPaymentButton = UIButton()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: - Properties
+    
+    weak var delegate: PaymentDetailsViewInterface?
+    
+    // MARK: - Init Methods
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
-        updateButtonState()
+        setupConstraints()
+        updateStartPaymentButtonState()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Setup UI
+    
     private func setupUI() {
-        view.backgroundColor = .white
+        backgroundColor = .white
         
         let textFields = [cardNumberTextField, expiryDateTextField, cvvTextField]
         textFields.forEach { textField in
             textField.borderStyle = .roundedRect
             textField.delegate = self
             textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-            view.addSubview(textField)
+            addSubview(textField)
         }
-        view.addSubview(amountLabel)
+        addSubview(amountLabel)
         
         cardNumberTextField.placeholder = "Card Number"
         expiryDateTextField.placeholder = "Expiry Date (MM/YY)"
@@ -46,16 +66,16 @@ class PaymentDetailsViewController: UIViewController, UITextFieldDelegate {
         startPaymentButton.backgroundColor = .lightGray // Başlangıçta butonu devre dışı bırak
         startPaymentButton.layer.cornerRadius = 5
         startPaymentButton.addTarget(self, action: #selector(startPayment), for: .touchUpInside)
-        view.addSubview(startPaymentButton)
-        
-        setupConstraints()
+        addSubview(startPaymentButton)
     }
+    
+    // MARK: - Setup Constraints
     
     private func setupConstraints() {
         cardNumberTextField.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
-            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-20)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
+            make.left.equalTo(safeAreaLayoutGuide.snp.left).offset(20)
+            make.right.equalTo(safeAreaLayoutGuide.snp.right).offset(-20)
             make.height.equalTo(44)
         }
         
@@ -78,48 +98,47 @@ class PaymentDetailsViewController: UIViewController, UITextFieldDelegate {
         
         startPaymentButton.snp.makeConstraints { make in
             make.top.equalTo(amountLabel.snp.bottom).offset(20)
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
-            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-20)
+            make.left.equalTo(safeAreaLayoutGuide.snp.left).offset(20)
+            make.right.equalTo(safeAreaLayoutGuide.snp.right).offset(-20)
             make.height.equalTo(50)
         }
     }
     
-    @objc private func textFieldDidChange(_ textField: UITextField) {
-        updateButtonState()
-    }
+    // MARK: - Actions
     
-    private func updateButtonState() {
-        let cardNumberIsValid = !(cardNumberTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true)
-        let expiryDateIsValid = !(expiryDateTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true)
-        let cvvIsValid = !(cvvTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true)
-        
-        startPaymentButton.isEnabled = cardNumberIsValid && expiryDateIsValid && cvvIsValid
-        startPaymentButton.backgroundColor = startPaymentButton.isEnabled ? .blue : .lightGray
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        switch textField {
+        case cardNumberTextField:
+            delegate?.paymentDetailsView(self, didUpdateCardNumber: textField.text ?? "")
+        case expiryDateTextField:
+            delegate?.paymentDetailsView(self, didUpdateExpiryDate: textField.text ?? "")
+        case cvvTextField:
+            delegate?.paymentDetailsView(self, didUpdateCVV: textField.text ?? "")
+        default:
+            break
+        }
+        updateStartPaymentButtonState()
     }
     
     @objc private func startPayment() {
-        guard let cardNo = cardNumberTextField.text,
-              let expDate = expiryDateTextField.text,
-              let cvv = cvvTextField.text else {
-            showAlert(message: "Please fill in all fields correctly.")
-            return
-        }
-        
-        PaymentSDK.shared.startPayment(cardNo: cardNo, expDate: expDate, cvv: cvv, amount: amountLabel.text ?? "") { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    self?.onPaymentInitiated?()
-                case .failure(let error):
-                    self?.showAlert(message: error.localizedDescription)
-                }
-            }
-        }
+        delegate?.paymentDetailsViewDidTapStartPayment(self)
     }
     
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Payment", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+    private func updateStartPaymentButtonState() {
+        let isCardNumberValid = !(cardNumberTextField.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true)
+        let isExpiryDateValid = !(expiryDateTextField.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true)
+        let isCVVValid = !(cvvTextField.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true)
+        
+        let isValid = isCardNumberValid && isExpiryDateValid && isCVVValid
+        startPaymentButton.isEnabled = isValid
+        startPaymentButton.backgroundColor = isValid ? .systemBlue : .lightGray
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension PaymentDetailsView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true
     }
 }

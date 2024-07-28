@@ -93,12 +93,13 @@ extension CartController: UICollectionViewDelegate, UICollectionViewDataSource, 
 //MARK: - CartViewInterface
 
 extension CartController: CartViewInterface {
+    
     func cartView(_ view: CartView, checkoutButtonTapped button: UIButton) {
         if cartViewModel.cartsProducts.isEmpty {
             Alert.alertMessage(title: "Cart is empty!", message: "Please add items to your cart.", vc: self)
         } else {
             let paymentVC = PaymentDetailsViewController()
-            paymentVC.amountLabel.text = "$\(cartViewModel.totalCost)"
+            paymentVC.viewModel.updateAmount("\(cartViewModel.totalCost)")
             paymentVC.onPaymentInitiated = { [weak self] in
                 let otpVC = OTPViewController()
                 otpVC.onOTPVerified = { [weak self] success in

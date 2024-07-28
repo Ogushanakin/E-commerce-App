@@ -75,6 +75,8 @@
 		211CCBA72C56601300DA1983 /* PaymentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBA62C56601300DA1983 /* PaymentDetailsViewController.swift */; };
 		211CCBAA2C56645A00DA1983 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBA92C56645A00DA1983 /* OTPController.swift */; };
 		211CCBC22C56897D00DA1983 /* loadingCircle.json in Resources */ = {isa = PBXBuildFile; fileRef = 211CCBB22C56897D00DA1983 /* loadingCircle.json */; };
+		211CCBD32C56A06B00DA1983 /* PaymentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBD22C56A06B00DA1983 /* PaymentDetailViewModel.swift */; };
+		211CCBD62C56A39500DA1983 /* PaymentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBD52C56A39500DA1983 /* PaymentDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +142,8 @@
 		211CCBA62C56601300DA1983 /* PaymentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailsViewController.swift; sourceTree = "<group>"; };
 		211CCBA92C56645A00DA1983 /* OTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
 		211CCBB22C56897D00DA1983 /* loadingCircle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingCircle.json; sourceTree = "<group>"; };
+		211CCBD22C56A06B00DA1983 /* PaymentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailViewModel.swift; sourceTree = "<group>"; };
+		211CCBD52C56A39500DA1983 /* PaymentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +205,7 @@
 				211CCB842C5613D800DA1983 /* Profile */,
 				211CCB8D2C56148B00DA1983 /* ResetPassword */,
 				211CCBA82C5660F500DA1983 /* PaymentModule */,
+				211CCBD42C56A19F00DA1983 /* OTP */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -559,8 +564,8 @@
 		211CCBA82C5660F500DA1983 /* PaymentModule */ = {
 			isa = PBXGroup;
 			children = (
-				211CCBA62C56601300DA1983 /* PaymentDetailsViewController.swift */,
-				211CCBA92C56645A00DA1983 /* OTPController.swift */,
+				211CCBD72C56A61300DA1983 /* ViewModel */,
+				211CCBD82C56A61A00DA1983 /* View */,
 			);
 			path = PaymentModule;
 			sourceTree = "<group>";
@@ -571,6 +576,31 @@
 				211CCB9F2C563AAF00DA1983 /* OrderCollectionCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		211CCBD42C56A19F00DA1983 /* OTP */ = {
+			isa = PBXGroup;
+			children = (
+				211CCBA92C56645A00DA1983 /* OTPController.swift */,
+			);
+			path = OTP;
+			sourceTree = "<group>";
+		};
+		211CCBD72C56A61300DA1983 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				211CCBD22C56A06B00DA1983 /* PaymentDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		211CCBD82C56A61A00DA1983 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				211CCBA62C56601300DA1983 /* PaymentDetailsViewController.swift */,
+				211CCBD52C56A39500DA1983 /* PaymentDetailView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -660,6 +690,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211CCBD62C56A39500DA1983 /* PaymentDetailView.swift in Sources */,
 				211CCB632C5512A000DA1983 /* CustomSearchController.swift in Sources */,
 				211CCB772C55428200DA1983 /* CartController.swift in Sources */,
 				211CCB952C5614DC00DA1983 /* ResetPasswordController.swift in Sources */,
@@ -688,6 +719,7 @@
 				211CCB6F2C5541D900DA1983 /* CartViewModel.swift in Sources */,
 				211CCBA02C563AAF00DA1983 /* OrderCollectionCell.swift in Sources */,
 				211CCB302C543CBE00DA1983 /* SignUpView.swift in Sources */,
+				211CCBD32C56A06B00DA1983 /* PaymentDetailViewModel.swift in Sources */,
 				211CCB752C55427500DA1983 /* CartView.swift in Sources */,
 				211CCAEF2C54315500DA1983 /* SignInController.swift in Sources */,
 				211CCB172C5435D400DA1983 /* Product.swift in Sources */,
