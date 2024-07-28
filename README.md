@@ -7,3 +7,4 @@
 * Controller and ViewModel connected with Delegate and Closure's
 * Fully SPM build
 * Protocol Oriented, Object Oriented and Functional Programming
+* Memory Management: No Retain Cycles
