@@ -54,7 +54,7 @@ final class OrderCollectionCell: UICollectionViewCell {
             let productPrice = product.price ?? 0.0
             totalPrice += (Double(productQuantity) * productPrice)
             let formattedProductPrice = String(format: "%.2f", productPrice)
-            let productLabel = CustomLabel(text: "\(productTitle) - \(productQuantity) x $\(formattedProductPrice)", numberOfLines: 1, font: .systemFont(ofSize: 14), textColor: .black, textAlignment: .left)
+            let productLabel = CustomLabel(text: "\(productTitle) - \(productQuantity) x $\(formattedProductPrice)", numberOfLines: 0, font: .systemFont(ofSize: 14, weight: .medium), textColor: .gray, textAlignment: .left)
             productListStackView.addArrangedSubview(productLabel)
         }
         
@@ -70,37 +70,36 @@ extension OrderCollectionCell {
     // MARK: - AddSubview
     
     private func addSubview() {
-        addSubviews(orderDateLabel, productListStackView, totalPriceLabel)
+        addSubviews(orderDateLabel, totalPriceLabel, productListStackView)
     }
     
     // MARK: - Setup Constraints
     
     private func setupConstraints() {
         orderDateLabelConstraints()
-        productListStackViewConstraints()
         totalPriceLabelConstraints()
+        productListStackViewConstraints()
     }
     
     private func orderDateLabelConstraints() {
+        orderDateLabel.textColor = #colorLiteral(red: 0.9821694493, green: 0.2583739161, blue: 0.4088498354, alpha: 1)
         orderDateLabel.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
+            make.top.left.equalToSuperview().offset(14)
+            make.height.equalTo(25)
         }
     }
-    
+    private func totalPriceLabelConstraints() {
+        totalPriceLabel.sizeToFit()
+        totalPriceLabel.snp.makeConstraints { make in
+            make.bottom.right.equalToSuperview().inset(14)
+            make.height.equalTo(25)
+        }
+    }
     private func productListStackViewConstraints() {
         productListStackView.snp.makeConstraints { make in
             make.top.equalTo(orderDateLabel.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(10)
-        }
-    }
-    
-    private func totalPriceLabelConstraints() {
-        totalPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(productListStackView.snp.bottom).offset(10)
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalTo(totalPriceLabel.snp.top).offset(-10)
         }
     }
 }

@@ -14,7 +14,7 @@ class PaymentSDK {
     private init() {}
     
     // Dummy implementation of startPayment
-    func startPayment(cardNo: String, expDate: String, cvv: String, amount: Double, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func startPayment(cardNo: String, expDate: String, cvv: String, amount: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         print("Starting payment process...")
         
         DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {

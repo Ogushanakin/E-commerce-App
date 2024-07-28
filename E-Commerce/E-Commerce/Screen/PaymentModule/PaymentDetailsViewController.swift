@@ -15,7 +15,7 @@ class PaymentDetailsViewController: UIViewController {
     private let cardNumberTextField = CustomTextField(attributedPlaceholder: NSAttributedString(string: "Credit Card Number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray]), image: UIImage(systemName: "creditcard.fill")!)
     private let expiryDateTextField = CustomTextField(attributedPlaceholder: NSAttributedString(string: "Expiry Date (MM/YY)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray]), image: UIImage(systemName: "calendar")!)
     private let cvvTextField = CustomTextField(attributedPlaceholder: NSAttributedString(string: "CVV", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray]), image: UIImage(systemName: "key.horizontal.fill")!)
-    private let amountTextField = UITextField()
+    let amountLabel = UILabel()
     private let startPaymentButton = UIButton()
     
     override func viewDidLoad() {
@@ -26,16 +26,17 @@ class PaymentDetailsViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        let textFields = [cardNumberTextField, expiryDateTextField, cvvTextField, amountTextField]
+        let textFields = [cardNumberTextField, expiryDateTextField, cvvTextField]
         textFields.forEach { textField in
             textField.borderStyle = .roundedRect
             view.addSubview(textField)
         }
+        view.addSubview(amountLabel)
         
         cardNumberTextField.placeholder = "Card Number"
         expiryDateTextField.placeholder = "Expiry Date (MM/YY)"
         cvvTextField.placeholder = "CVV"
-        amountTextField.placeholder = "Amount"
+        amountLabel.sizeToFit()
         
         startPaymentButton.setTitle("Start Payment", for: .normal)
         startPaymentButton.setTitleColor(.white, for: .normal)
@@ -65,13 +66,15 @@ class PaymentDetailsViewController: UIViewController {
             make.left.right.height.equalTo(cardNumberTextField)
         }
         
-        amountTextField.snp.makeConstraints { make in
+        amountLabel.textColor = .black
+        amountLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        amountLabel.snp.makeConstraints { make in
             make.top.equalTo(cvvTextField.snp.bottom).offset(10)
             make.left.right.height.equalTo(cardNumberTextField)
         }
         
         startPaymentButton.snp.makeConstraints { make in
-            make.top.equalTo(amountTextField.snp.bottom).offset(20)
+            make.top.equalTo(amountLabel.snp.bottom).offset(20)
             make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
             make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-20)
             make.height.equalTo(50)
@@ -81,14 +84,12 @@ class PaymentDetailsViewController: UIViewController {
     @objc private func startPayment() {
         guard let cardNo = cardNumberTextField.text,
               let expDate = expiryDateTextField.text,
-              let cvv = cvvTextField.text,
-              let amountString = amountTextField.text,
-              let amount = Double(amountString) else {
+              let cvv = cvvTextField.text else {
             showAlert(message: "Please fill in all fields correctly.")
             return
         }
         
-        PaymentSDK.shared.startPayment(cardNo: cardNo, expDate: expDate, cvv: cvv, amount: amount) { [weak self] result in
+        PaymentSDK.shared.startPayment(cardNo: cardNo, expDate: expDate, cvv: cvv, amount: amountLabel.text!) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
