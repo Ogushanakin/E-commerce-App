@@ -16,7 +16,7 @@ struct Product: Codable, ProductCollectionCellProtocol, ProductDetailViewProtoco
     let category: Category?
     let image: String?
     let rating: Rating?
-    let quantity: Int? // quantity field added
+    let quantity: Int?
     
     enum CodingKeys: String, CodingKey {
         case id, title, price
@@ -181,7 +181,6 @@ enum Category: String, Codable {
     case womenSClothing = "women's clothing"
 }
 
-// MARK: - Rating
 struct Rating: Codable {
     let rate: Double?
     let count: Int?

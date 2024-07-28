@@ -53,8 +53,8 @@ final class SignInController: UIViewController {
 extension SignInController: SignInViewInterface {
     
     func signInView(_ view: SignInView, forgotPasswordButtonTapped button: UIButton) {
-//        let resetPasswordVC = ResetPasswordController()
-//        present(resetPasswordVC, animated: true)
+        let resetPasswordVC = ResetPasswordController()
+        present(resetPasswordVC, animated: true)
     }
     func signInView(_ view: SignInView, signInButtonTapped button: UIButton) {
         authViewModel.signIn(email: email, password: password)

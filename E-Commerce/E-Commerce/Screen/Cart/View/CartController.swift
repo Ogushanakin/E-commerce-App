@@ -99,7 +99,7 @@ extension CartController: CartViewInterface {
             Alert.alertMessage(title: "Cart is empty!", message: "Please add items to your cart.", vc: self)
         } else {
             let paymentVC = PaymentDetailsViewController()
-            paymentVC.viewModel.updateAmount("\(cartViewModel.totalCost)")
+            paymentVC.viewModel.updateAmount("Total Price: $\(cartViewModel.totalCost)")
             paymentVC.onPaymentInitiated = { [weak self] in
                 let otpVC = OTPViewController()
                 otpVC.onOTPVerified = { [weak self] success in

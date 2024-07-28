@@ -19,7 +19,7 @@ final class OrderHistoryView: UIView {
     weak var interface: OrderHistoryViewInterface?
     
     // MARK: - Creating UI Elements
-    
+    private let emptyStateView = EmptyStateView()
     var orderHistoryCollection = CustomCollection(backgroundColor: .systemGray6, showsScrollIndicator: false, layout: UICollectionViewFlowLayout(), scrollDirection: .vertical)
     
     // MARK: - Init methods
@@ -28,7 +28,9 @@ final class OrderHistoryView: UIView {
         super.init(frame: frame)
         backgroundColor = .systemGray6
         addSubview()
+        addSubview(emptyStateView)
         setupConstraints()
+        showEmptyState(false)
     }
     
     required init?(coder: NSCoder) {
@@ -49,6 +51,12 @@ final class OrderHistoryView: UIView {
         orderHistoryCollection.snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide)
         }
+        emptyStateView.snp.makeConstraints { make in
+            make.edges.equalTo(safeAreaLayoutGuide)
+        }
+    }
+    func showEmptyState(_ show: Bool) {
+        emptyStateView.isHidden = !show
+        orderHistoryCollection.isHidden = show
     }
 }
-

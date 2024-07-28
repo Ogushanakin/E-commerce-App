@@ -77,6 +77,7 @@
 		211CCBC22C56897D00DA1983 /* loadingCircle.json in Resources */ = {isa = PBXBuildFile; fileRef = 211CCBB22C56897D00DA1983 /* loadingCircle.json */; };
 		211CCBD32C56A06B00DA1983 /* PaymentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBD22C56A06B00DA1983 /* PaymentDetailViewModel.swift */; };
 		211CCBD62C56A39500DA1983 /* PaymentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBD52C56A39500DA1983 /* PaymentDetailView.swift */; };
+		211CCBDA2C56B6CB00DA1983 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBD92C56B6CB00DA1983 /* EmptyStateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,7 @@
 		211CCBB22C56897D00DA1983 /* loadingCircle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingCircle.json; sourceTree = "<group>"; };
 		211CCBD22C56A06B00DA1983 /* PaymentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailViewModel.swift; sourceTree = "<group>"; };
 		211CCBD52C56A39500DA1983 /* PaymentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailView.swift; sourceTree = "<group>"; };
+		211CCBD92C56B6CB00DA1983 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +336,7 @@
 		211CCB312C543E2900DA1983 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				211CCBD92C56B6CB00DA1983 /* EmptyStateView.swift */,
 				211CCB322C543E3D00DA1983 /* CustomLabel.swift */,
 				211CCB342C543E6700DA1983 /* CustomStackView.swift */,
 				211CCB362C543E9700DA1983 /* CustomTextField.swift */,
@@ -719,6 +722,7 @@
 				211CCB6F2C5541D900DA1983 /* CartViewModel.swift in Sources */,
 				211CCBA02C563AAF00DA1983 /* OrderCollectionCell.swift in Sources */,
 				211CCB302C543CBE00DA1983 /* SignUpView.swift in Sources */,
+				211CCBDA2C56B6CB00DA1983 /* EmptyStateView.swift in Sources */,
 				211CCBD32C56A06B00DA1983 /* PaymentDetailViewModel.swift in Sources */,
 				211CCB752C55427500DA1983 /* CartView.swift in Sources */,
 				211CCAEF2C54315500DA1983 /* SignInController.swift in Sources */,

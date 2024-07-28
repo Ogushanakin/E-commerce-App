@@ -94,12 +94,16 @@ extension OrderHistoryController: OrderHistoryViewInterface {
 // MARK: - OrderHistoryViewModelDelegate
 
 extension OrderHistoryController: OrderHistoryViewModelDelegate {
-    
     func didOccurError(_ error: Error) {
         print(error.localizedDescription)
     }
     
     func didFetchOrderHistory() {
+        if orderHistoryViewModel.orders.isEmpty {
+            orderHistoryView.showEmptyState(true)
+        } else {
+            orderHistoryView.showEmptyState(false)
+        }
         orderHistoryView.orderHistoryCollection.reloadData()
     }
 }

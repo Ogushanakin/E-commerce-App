@@ -38,13 +38,10 @@ final class PaymentDetailsViewModel {
     }
     
     func startPayment(completion: @escaping (Result<Void, PaymentError>) -> Void) {
-        // Simulate payment processing
         DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
-            // Check for valid details
             if self.cardNumber.isEmpty || self.expiryDate.isEmpty || self.cvv.isEmpty {
                 completion(.failure(.paymentFailed))
             } else {
-                // Simulate successful payment
                 completion(.success(()))
             }
         }

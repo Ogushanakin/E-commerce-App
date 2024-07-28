@@ -73,11 +73,7 @@ extension ProfileController: ProfileViewModelDelegate {
     
     func didFetchProfilePhotoSuccessful(_ url: String) {
         profileView.profileImageView.downloadSetImage(url: url)
-//        profileView.profileImageActivityIndicator.stopAnimating()
     }
-    
-    
-    
 }
 
 
