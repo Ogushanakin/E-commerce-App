@@ -46,7 +46,7 @@ final class CartViewModel {
         }
     }
     
-     var costAccToItemCount: [String: Double] = [:] {
+    var costAccToItemCount: [String: Double] = [:] {
         didSet {
             if costAccToItemCount.count == cart?.count {
                 delegate?.didFetchCostAccToItemCount()
@@ -101,12 +101,20 @@ final class CartViewModel {
         guard let currentUser = currentUser else { return }
         
         let userRef = database.collection("Users").document(currentUser.uid)
-        if cartsProducts.count == 0 {
+        if cartsProducts.isEmpty {
             self.delegate?.didCheckoutNotSuccessful()
         } else {
+            let batch = database.batch()
             for product in cartsProducts {
                 if let productId = product.id {
-                    userRef.updateData(["cart.\(productId)" : FieldValue.delete()]) { error in
+                    batch.updateData(["cart.\(productId)" : FieldValue.delete()], forDocument: userRef)
+                }
+            }
+            batch.commit { error in
+                if let error = error {
+                    self.delegate?.didOccurError(error)
+                } else {
+                    self.saveOrderHistory(products: self.cartsProducts) { error in
                         if let error = error {
                             self.delegate?.didOccurError(error)
                         } else {
@@ -116,12 +124,25 @@ final class CartViewModel {
                         }
                     }
                 }
-
             }
         }
-       
     }
     
+    //MARK: - Save Order History
+    
+    func saveOrderHistory(products: [Product], completion: @escaping (Error?) -> Void) {
+        guard let currentUser = currentUser else { return }
+        
+        let orderHistoryRef = database.collection("Users").document(currentUser.uid).collection("OrderHistory")
+        let orderData: [String: Any] = [
+            "products": products.map { $0.dictionaryRepresentation },
+            "date": Timestamp(date: Date())
+        ]
+        
+        orderHistoryRef.addDocument(data: orderData) { error in
+            completion(error)
+        }
+    }
     
     //MARK: - Get Cart from Firestore
     
@@ -157,7 +178,6 @@ final class CartViewModel {
                     self.costAccToItemCount = [:]
                 }
             }
-            
         }
     }
     
@@ -206,7 +226,6 @@ final class CartViewModel {
         } onError: { error in
             self.delegate?.didOccurError(error)
         }
-
     }
 
     //MARK: - GetProductIndexPath
@@ -226,5 +245,16 @@ final class CartViewModel {
     func removeProduct(index: Int, productId: String) {
         cartsProducts.remove(at: index)
         costAccToItemCount.removeValue(forKey: productId)
+    }
+}
+
+extension Product {
+    var dictionaryRepresentation: [String: Any] {
+        return [
+            "id": id ?? 0,
+            "title": title ?? "",
+            "price": price ?? 0.0,
+            "quantity": 1
+        ]
     }
 }
