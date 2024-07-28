@@ -96,42 +96,58 @@ final class CartViewModel {
     
 
     //MARK: - Checkout
-    
     func checkout() {
-        guard let currentUser = currentUser else { return }
+        guard let currentUser = currentUser else {
+            print("Current user is nil.")
+            self.delegate?.didCheckoutNotSuccessful()
+            return
+        }
         
         let userRef = database.collection("Users").document(currentUser.uid)
+        
         if cartsProducts.isEmpty {
+            print("Cart is empty, cannot checkout.")
             self.delegate?.didCheckoutNotSuccessful()
-        } else {
-            let batch = database.batch()
-            for product in cartsProducts {
-                if let productId = product.id {
-                    batch.updateData(["cart.\(productId)" : FieldValue.delete()], forDocument: userRef)
-                }
+            return
+        }
+        
+        let batch = database.batch()
+        for product in cartsProducts {
+            if let productId = product.id {
+                batch.updateData(["cart.\(productId)" : FieldValue.delete()], forDocument: userRef)
+            } else {
+                print("Product ID is nil for product: \(product)")
             }
-            batch.commit { error in
+        }
+        
+        batch.commit { error in
+            if let error = error {
+                print("Error committing batch update: \(error.localizedDescription)")
+                self.delegate?.didOccurError(error)
+                return
+            }
+            
+            self.saveOrderHistory(products: self.cartsProducts) { error in
                 if let error = error {
+                    print("Error saving order history: \(error.localizedDescription)")
                     self.delegate?.didOccurError(error)
-                } else {
-                    self.saveOrderHistory(products: self.cartsProducts) { error in
-                        if let error = error {
-                            self.delegate?.didOccurError(error)
-                        } else {
-                            self.cartsProducts = []
-                            self.delegate?.didUpdateCartSuccessful()
-                            self.delegate?.didCheckoutSuccessful()
-                        }
-                    }
+                    return
                 }
+                
+                // Clear the cart and notify delegates
+                self.cartsProducts = []
+                self.delegate?.didUpdateCartSuccessful()
+                self.delegate?.didCheckoutSuccessful()
             }
         }
     }
-    
-    //MARK: - Save Order History
-    
+
     func saveOrderHistory(products: [Product], completion: @escaping (Error?) -> Void) {
-        guard let currentUser = currentUser else { return }
+        guard let currentUser = currentUser else {
+            print("Current user is nil.")
+            completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Current user is nil."]))
+            return
+        }
         
         let orderHistoryRef = database.collection("Users").document(currentUser.uid).collection("OrderHistory")
         let orderData: [String: Any] = [
@@ -140,9 +156,13 @@ final class CartViewModel {
         ]
         
         orderHistoryRef.addDocument(data: orderData) { error in
+            if let error = error {
+                print("Error adding document: \(error.localizedDescription)")
+            }
             completion(error)
         }
     }
+
     
     //MARK: - Get Cart from Firestore
     

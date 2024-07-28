@@ -88,12 +88,11 @@ class ProductCollectionCell: UICollectionViewCell {
             interface?.productCollectionCell(self, productId: productId, quantity: 0, wishButtonTapped: button)
         }
         addToWishListButton.isSelected.toggle()
-        
     }
     
     func toggleAddButton() {
-        let image = UIImage(named: "cart1")
-        let imageFilled = UIImage(named: "cart2")
+        let image = UIImage(systemName: "heart")
+        let imageFilled = UIImage(systemName: "heart.fill")
         addToWishListButton.setImage(image, for: .normal)
         addToWishListButton.setImage(imageFilled, for: .selected)
     }
