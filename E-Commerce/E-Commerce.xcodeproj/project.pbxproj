@@ -71,6 +71,9 @@
 		211CCB9E2C5638C200DA1983 /* OrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB9D2C5638C200DA1983 /* OrderHistoryView.swift */; };
 		211CCBA02C563AAF00DA1983 /* OrderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB9F2C563AAF00DA1983 /* OrderCollectionCell.swift */; };
 		211CCBA22C563B4C00DA1983 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBA12C563B4C00DA1983 /* OrderModel.swift */; };
+		211CCBA52C565FEB00DA1983 /* PaymentSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBA42C565FEB00DA1983 /* PaymentSDK.swift */; };
+		211CCBA72C56601300DA1983 /* PaymentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBA62C56601300DA1983 /* PaymentDetailsViewController.swift */; };
+		211CCBAA2C56645A00DA1983 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBA92C56645A00DA1983 /* OTPController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +135,9 @@
 		211CCB9D2C5638C200DA1983 /* OrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryView.swift; sourceTree = "<group>"; };
 		211CCB9F2C563AAF00DA1983 /* OrderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollectionCell.swift; sourceTree = "<group>"; };
 		211CCBA12C563B4C00DA1983 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		211CCBA42C565FEB00DA1983 /* PaymentSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSDK.swift; sourceTree = "<group>"; };
+		211CCBA62C56601300DA1983 /* PaymentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailsViewController.swift; sourceTree = "<group>"; };
+		211CCBA92C56645A00DA1983 /* OTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +198,7 @@
 				211CCB962C56385E00DA1983 /* OrderHistory */,
 				211CCB842C5613D800DA1983 /* Profile */,
 				211CCB8D2C56148B00DA1983 /* ResetPassword */,
+				211CCBA82C5660F500DA1983 /* PaymentModule */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -199,6 +206,7 @@
 		211CCAFF2C5431B500DA1983 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				211CCBA32C565FDB00DA1983 /* PaymentSDK */,
 				211CCB312C543E2900DA1983 /* CustomViews */,
 				211CCB152C54349900DA1983 /* Network */,
 				211CCB012C54321200DA1983 /* App */,
@@ -537,6 +545,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		211CCBA32C565FDB00DA1983 /* PaymentSDK */ = {
+			isa = PBXGroup;
+			children = (
+				211CCBA42C565FEB00DA1983 /* PaymentSDK.swift */,
+			);
+			path = PaymentSDK;
+			sourceTree = "<group>";
+		};
+		211CCBA82C5660F500DA1983 /* PaymentModule */ = {
+			isa = PBXGroup;
+			children = (
+				211CCBA62C56601300DA1983 /* PaymentDetailsViewController.swift */,
+				211CCBA92C56645A00DA1983 /* OTPController.swift */,
+			);
+			path = PaymentModule;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -634,9 +659,11 @@
 				211CCB8A2C56140800DA1983 /* ProfileController.swift in Sources */,
 				211CCB482C550CEB00DA1983 /* HomeController.swift in Sources */,
 				211CCB9E2C5638C200DA1983 /* OrderHistoryView.swift in Sources */,
+				211CCBA52C565FEB00DA1983 /* PaymentSDK.swift in Sources */,
 				211CCB5D2C5511B400DA1983 /* CustomPageControl.swift in Sources */,
 				211CCB512C55105A00DA1983 /* ProductCollectionCell.swift in Sources */,
 				211CCB6A2C55353500DA1983 /* ProductDetailController.swift in Sources */,
+				211CCBA72C56601300DA1983 /* PaymentDetailsViewController.swift in Sources */,
 				211CCB452C550CCA00DA1983 /* MainTabBarController.swift in Sources */,
 				211CCB192C54360300DA1983 /* WebService.swift in Sources */,
 				211CCB9A2C56389800DA1983 /* OrderHistoryViewModel.swift in Sources */,
@@ -658,6 +685,7 @@
 				211CCB422C550A6E00DA1983 /* SignInView.swift in Sources */,
 				211CCB882C5613FE00DA1983 /* ProfileViewModel.swift in Sources */,
 				211CCB1D2C54368C00DA1983 /* NetworkManager.swift in Sources */,
+				211CCBAA2C56645A00DA1983 /* OTPController.swift in Sources */,
 				211CCB912C5614BC00DA1983 /* ResetPasswordViewModel.swift in Sources */,
 				211CCB282C543C4700DA1983 /* User.swift in Sources */,
 				211CCB332C543E3D00DA1983 /* CustomLabel.swift in Sources */,
