@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Product
 struct Product: Codable, ProductCollectionCellProtocol, ProductDetailViewProtocol, CartCollectionCellProtocol {
 
     let id: Int?
@@ -24,27 +23,26 @@ struct Product: Codable, ProductCollectionCellProtocol, ProductDetailViewProtoco
         case category, image, rating
     }
     
-    //MARK: - SpecialCollectionCellProtocol
-
-    var specialImage: String {
-        if let image = image {
-            return image
-        }
-        return ""
+    init(dictionary: [String: Any]) {
+        self.id = dictionary["id"] as? Int
+        self.title = dictionary["title"] as? String
+        self.price = dictionary["price"] as? Double
+        self.productDescription = dictionary["description"] as? String
+        self.category = Category(rawValue: dictionary["category"] as? String ?? "")
+        self.image = dictionary["image"] as? String
+        self.rating = Rating(dictionary: dictionary["rating"] as? [String: Any] ?? [:])
     }
     
-    var specialTitle: String {
-        if let title = title {
-            return title
-        }
-        return ""
-    }
-    
-    var specialDetail: String {
-        if let productDescription = productDescription {
-            return productDescription
-        }
-        return ""
+    var toDictionary: [String: Any] {
+        return [
+            "id": id ?? 0,
+            "title": title ?? "",
+            "price": price ?? 0.0,
+            "description": productDescription ?? "",
+            "category": category?.rawValue ?? "",
+            "image": image ?? "",
+            "rating": rating?.toDictionary ?? [:]
+        ]
     }
     
     //MARK: - ProductCollectionCellProtocol
@@ -171,7 +169,6 @@ struct Product: Codable, ProductCollectionCellProtocol, ProductDetailViewProtoco
         }
         return 0
     }
-    
 }
 
 enum Category: String, Codable {
@@ -185,4 +182,16 @@ enum Category: String, Codable {
 struct Rating: Codable {
     let rate: Double?
     let count: Int?
+    
+    init(dictionary: [String: Any]) {
+        self.rate = dictionary["rate"] as? Double
+        self.count = dictionary["count"] as? Int
+    }
+    
+    var toDictionary: [String: Any] {
+        return [
+            "rate": rate ?? 0.0,
+            "count": count ?? 0
+        ]
+    }
 }

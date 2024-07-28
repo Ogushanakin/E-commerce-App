@@ -13,7 +13,6 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setupTabBar()
         configureTabBar()
-        
     }
     
     private func setupTabBar() {
@@ -35,9 +34,9 @@ class MainTabBarController: UITabBarController {
     }
     
     private func searchController() -> UINavigationController {
-        let searchVC = HomeController()
-        searchVC.title = "Search"
-        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "search1"), selectedImage: UIImage(named: "search2"))
+        let searchVC = OrderHistoryController()
+        searchVC.title = "Order History"
+        searchVC.tabBarItem = UITabBarItem(title: "Order History", image: UIImage(systemName: "list.bullet.clipboard"), selectedImage: UIImage(systemName: "list.bullet.clipboard.fill"))
         
         return UINavigationController(rootViewController: searchVC)
     }
@@ -56,5 +55,4 @@ class MainTabBarController: UITabBarController {
         
         return UINavigationController(rootViewController: profileVC)
     }
-    
 }

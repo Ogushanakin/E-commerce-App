@@ -66,6 +66,11 @@
 		211CCB912C5614BC00DA1983 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB902C5614BC00DA1983 /* ResetPasswordViewModel.swift */; };
 		211CCB932C5614C900DA1983 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB922C5614C900DA1983 /* ResetPasswordView.swift */; };
 		211CCB952C5614DC00DA1983 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB942C5614DC00DA1983 /* ResetPasswordController.swift */; };
+		211CCB9A2C56389800DA1983 /* OrderHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB992C56389800DA1983 /* OrderHistoryViewModel.swift */; };
+		211CCB9C2C5638A600DA1983 /* OrderHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB9B2C5638A600DA1983 /* OrderHistoryController.swift */; };
+		211CCB9E2C5638C200DA1983 /* OrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB9D2C5638C200DA1983 /* OrderHistoryView.swift */; };
+		211CCBA02C563AAF00DA1983 /* OrderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB9F2C563AAF00DA1983 /* OrderCollectionCell.swift */; };
+		211CCBA22C563B4C00DA1983 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBA12C563B4C00DA1983 /* OrderModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +127,11 @@
 		211CCB902C5614BC00DA1983 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		211CCB922C5614C900DA1983 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		211CCB942C5614DC00DA1983 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
+		211CCB992C56389800DA1983 /* OrderHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryViewModel.swift; sourceTree = "<group>"; };
+		211CCB9B2C5638A600DA1983 /* OrderHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryController.swift; sourceTree = "<group>"; };
+		211CCB9D2C5638C200DA1983 /* OrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryView.swift; sourceTree = "<group>"; };
+		211CCB9F2C563AAF00DA1983 /* OrderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollectionCell.swift; sourceTree = "<group>"; };
+		211CCBA12C563B4C00DA1983 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +189,7 @@
 				211CCB642C5534B500DA1983 /* ProductDetail */,
 				211CCB6D2C5541A100DA1983 /* Cart */,
 				211CCB7D2C554CEE00DA1983 /* Checkout */,
+				211CCB962C56385E00DA1983 /* OrderHistory */,
 				211CCB842C5613D800DA1983 /* Profile */,
 				211CCB8D2C56148B00DA1983 /* ResetPassword */,
 			);
@@ -498,6 +509,34 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		211CCB962C56385E00DA1983 /* OrderHistory */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB982C56387E00DA1983 /* ViewModel */,
+				211CCB972C56387B00DA1983 /* View */,
+				211CCBA12C563B4C00DA1983 /* OrderModel.swift */,
+			);
+			path = OrderHistory;
+			sourceTree = "<group>";
+		};
+		211CCB972C56387B00DA1983 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB9B2C5638A600DA1983 /* OrderHistoryController.swift */,
+				211CCB9D2C5638C200DA1983 /* OrderHistoryView.swift */,
+				211CCB9F2C563AAF00DA1983 /* OrderCollectionCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		211CCB982C56387E00DA1983 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB992C56389800DA1983 /* OrderHistoryViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -594,11 +633,13 @@
 				211CCB1F2C54369D00DA1983 /* NetworkHelper.swift in Sources */,
 				211CCB8A2C56140800DA1983 /* ProfileController.swift in Sources */,
 				211CCB482C550CEB00DA1983 /* HomeController.swift in Sources */,
+				211CCB9E2C5638C200DA1983 /* OrderHistoryView.swift in Sources */,
 				211CCB5D2C5511B400DA1983 /* CustomPageControl.swift in Sources */,
 				211CCB512C55105A00DA1983 /* ProductCollectionCell.swift in Sources */,
 				211CCB6A2C55353500DA1983 /* ProductDetailController.swift in Sources */,
 				211CCB452C550CCA00DA1983 /* MainTabBarController.swift in Sources */,
 				211CCB192C54360300DA1983 /* WebService.swift in Sources */,
+				211CCB9A2C56389800DA1983 /* OrderHistoryViewModel.swift in Sources */,
 				211CCB7F2C554D1F00DA1983 /* CheckoutModel.swift in Sources */,
 				211CCB3E2C54409500DA1983 /* CustomAlert.swift in Sources */,
 				211CCB2C2C543C7B00DA1983 /* SignUpController.swift in Sources */,
@@ -606,6 +647,7 @@
 				211CCB392C543ECE00DA1983 /* CustomButton.swift in Sources */,
 				211CCB352C543E6700DA1983 /* CustomStackView.swift in Sources */,
 				211CCB6F2C5541D900DA1983 /* CartViewModel.swift in Sources */,
+				211CCBA02C563AAF00DA1983 /* OrderCollectionCell.swift in Sources */,
 				211CCB302C543CBE00DA1983 /* SignUpView.swift in Sources */,
 				211CCB752C55427500DA1983 /* CartView.swift in Sources */,
 				211CCAEF2C54315500DA1983 /* SignInController.swift in Sources */,
@@ -632,6 +674,8 @@
 				211CCAED2C54315500DA1983 /* SceneDelegate.swift in Sources */,
 				211CCB372C543E9700DA1983 /* CustomTextField.swift in Sources */,
 				211CCB552C55109C00DA1983 /* CustomImageView.swift in Sources */,
+				211CCB9C2C5638A600DA1983 /* OrderHistoryController.swift in Sources */,
+				211CCBA22C563B4C00DA1983 /* OrderModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
