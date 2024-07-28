@@ -60,6 +60,12 @@
 		211CCB7F2C554D1F00DA1983 /* CheckoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB7E2C554D1F00DA1983 /* CheckoutModel.swift */; };
 		211CCB812C554D3300DA1983 /* CheckoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB802C554D3300DA1983 /* CheckoutController.swift */; };
 		211CCB832C554D4700DA1983 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB822C554D4700DA1983 /* CheckoutView.swift */; };
+		211CCB882C5613FE00DA1983 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB872C5613FE00DA1983 /* ProfileViewModel.swift */; };
+		211CCB8A2C56140800DA1983 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB892C56140800DA1983 /* ProfileController.swift */; };
+		211CCB8C2C56140E00DA1983 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB8B2C56140E00DA1983 /* ProfileView.swift */; };
+		211CCB912C5614BC00DA1983 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB902C5614BC00DA1983 /* ResetPasswordViewModel.swift */; };
+		211CCB932C5614C900DA1983 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB922C5614C900DA1983 /* ResetPasswordView.swift */; };
+		211CCB952C5614DC00DA1983 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCB942C5614DC00DA1983 /* ResetPasswordController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +116,12 @@
 		211CCB7E2C554D1F00DA1983 /* CheckoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutModel.swift; sourceTree = "<group>"; };
 		211CCB802C554D3300DA1983 /* CheckoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutController.swift; sourceTree = "<group>"; };
 		211CCB822C554D4700DA1983 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		211CCB872C5613FE00DA1983 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		211CCB892C56140800DA1983 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		211CCB8B2C56140E00DA1983 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		211CCB902C5614BC00DA1983 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		211CCB922C5614C900DA1983 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		211CCB942C5614DC00DA1983 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +179,8 @@
 				211CCB642C5534B500DA1983 /* ProductDetail */,
 				211CCB6D2C5541A100DA1983 /* Cart */,
 				211CCB7D2C554CEE00DA1983 /* Checkout */,
+				211CCB842C5613D800DA1983 /* Profile */,
+				211CCB8D2C56148B00DA1983 /* ResetPassword */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -432,6 +446,58 @@
 			path = Checkout;
 			sourceTree = "<group>";
 		};
+		211CCB842C5613D800DA1983 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB852C5613EA00DA1983 /* ViewModel */,
+				211CCB862C5613F100DA1983 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		211CCB852C5613EA00DA1983 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB872C5613FE00DA1983 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		211CCB862C5613F100DA1983 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB892C56140800DA1983 /* ProfileController.swift */,
+				211CCB8B2C56140E00DA1983 /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		211CCB8D2C56148B00DA1983 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB8F2C5614A700DA1983 /* ViewModel */,
+				211CCB8E2C5614A400DA1983 /* View */,
+			);
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		211CCB8E2C5614A400DA1983 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB922C5614C900DA1983 /* ResetPasswordView.swift */,
+				211CCB942C5614DC00DA1983 /* ResetPasswordController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		211CCB8F2C5614A700DA1983 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				211CCB902C5614BC00DA1983 /* ResetPasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -520,11 +586,13 @@
 			files = (
 				211CCB632C5512A000DA1983 /* CustomSearchController.swift in Sources */,
 				211CCB772C55428200DA1983 /* CartController.swift in Sources */,
+				211CCB952C5614DC00DA1983 /* ResetPasswordController.swift in Sources */,
 				211CCB572C55111200DA1983 /* HomeView.swift in Sources */,
 				211CCB5B2C55116200DA1983 /* CustomCollectionView.swift in Sources */,
 				211CCB6C2C55355800DA1983 /* ProductDetailView.swift in Sources */,
 				211CCB2A2C543C5E00DA1983 /* AuthViewModel.swift in Sources */,
 				211CCB1F2C54369D00DA1983 /* NetworkHelper.swift in Sources */,
+				211CCB8A2C56140800DA1983 /* ProfileController.swift in Sources */,
 				211CCB482C550CEB00DA1983 /* HomeController.swift in Sources */,
 				211CCB5D2C5511B400DA1983 /* CustomPageControl.swift in Sources */,
 				211CCB512C55105A00DA1983 /* ProductCollectionCell.swift in Sources */,
@@ -546,13 +614,17 @@
 				211CCB812C554D3300DA1983 /* CheckoutController.swift in Sources */,
 				211CCB4C2C550FAD00DA1983 /* ProductsViewModel.swift in Sources */,
 				211CCB422C550A6E00DA1983 /* SignInView.swift in Sources */,
+				211CCB882C5613FE00DA1983 /* ProfileViewModel.swift in Sources */,
 				211CCB1D2C54368C00DA1983 /* NetworkManager.swift in Sources */,
+				211CCB912C5614BC00DA1983 /* ResetPasswordViewModel.swift in Sources */,
 				211CCB282C543C4700DA1983 /* User.swift in Sources */,
 				211CCB332C543E3D00DA1983 /* CustomLabel.swift in Sources */,
+				211CCB932C5614C900DA1983 /* ResetPasswordView.swift in Sources */,
 				211CCB7C2C55456800DA1983 /* CustomPresentationController.swift in Sources */,
 				211CCB682C55351800DA1983 /* ProductDetailViewModel.swift in Sources */,
 				211CCAEB2C54315500DA1983 /* AppDelegate.swift in Sources */,
 				211CCB4E2C550FE300DA1983 /* HomeProfileViewModel.swift in Sources */,
+				211CCB8C2C56140E00DA1983 /* ProfileView.swift in Sources */,
 				211CCB532C55108A00DA1983 /* CustomView.swift in Sources */,
 				211CCB1B2C54364200DA1983 /* WebHelper.swift in Sources */,
 				211CCB3B2C543F1300DA1983 /* Extensions.swift in Sources */,

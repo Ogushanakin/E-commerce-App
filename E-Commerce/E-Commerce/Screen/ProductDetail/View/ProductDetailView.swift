@@ -30,7 +30,7 @@ final class ProductDetailView: UIView {
     //MARK: - Creating UI Elements
     
     private var productImage = CustomImageView(backgroundColor: .white,contentMode: .scaleAspectFit)
-    private var productTitle = CustomLabel(text: "", numberOfLines: 2, font: .boldSystemFont(ofSize: 20), textColor: .blue, textAlignment: .left)
+    private var productTitle = CustomLabel(text: "", numberOfLines: 2, font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .left)
     var addToWishListButton = CustomButton(backgroundColor: .white, image: UIImage(systemName: "wishListButton"), tintColor: .black)
     private var favButtonTitleStackView = CustomStackView(axis: .horizontal, distiribution: .fill, spacing: 5, isHidden: false)
     private var salesAmountView = CustomView(backgroundColor: .systemGray6, cornerRadius: 12)
@@ -51,7 +51,7 @@ final class ProductDetailView: UIView {
     lazy var stepperLabel = CustomLabel(text: "1", numberOfLines: 0, font: .boldSystemFont(ofSize: 20), textColor: .black, textAlignment: .center)
     lazy var stepperMinusButton = CustomButton(backgroundColor: .systemGray6, cornerRadius: 20, image: UIImage(systemName: "minus"), tintColor: .black)
     lazy var stepperStackView = CustomStackView(axis: .horizontal, distiribution: .fill, isHidden: true)
-    private let addToCartButton = CustomButton(title: "Add to Cart", titleColor: .white, backgroundColor: .black, cornerRadius: 25, image: UIImage(systemName: "handbag.fill"), tintColor: .white, imageEdgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10), titleEdgeInsets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
+    private let addToCartButton = CustomButton(title: "Add to Cart", titleColor: .white, backgroundColor: #colorLiteral(red: 0.9821694493, green: 0.2583739161, blue: 0.4088498354, alpha: 1), cornerRadius: 25, image: UIImage(systemName: "handbag.fill"), tintColor: .white, imageEdgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10), titleEdgeInsets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
     lazy var cartBtnPriceLblView = CustomView()
     
     

@@ -51,7 +51,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func profileController() -> UINavigationController {
-        let profileVC = HomeController()
+        let profileVC = ProfileController()
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person" ), selectedImage: UIImage(systemName: "person.fill"))
         
         return UINavigationController(rootViewController: profileVC)

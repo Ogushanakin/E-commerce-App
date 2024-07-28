@@ -115,6 +115,10 @@ extension ProductCollectionCell {
     }
     
     private func addButtonToImageView() {
+        productImageView.layer.shadowColor = UIColor.black.cgColor
+        productImageView.layer.shadowOpacity = 0.3
+        productImageView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        productImageView.layer.shadowRadius = 2
         productImageView.addSubview(addToWishListButton)
     }
     
@@ -151,9 +155,9 @@ extension ProductCollectionCell {
     
     private func productImageConstraints() {
         productImageView.snp.makeConstraints { make in
-            make.height.equalTo(safeAreaLayoutGuide.snp.width).multipliedBy(0.7)
-            make.top.equalTo(safeAreaLayoutGuide)
-            make.leading.trailing.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(safeAreaLayoutGuide.snp.width).multipliedBy(0.9)
+            make.top.equalTo(safeAreaLayoutGuide).offset(3)
+            make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(3)
         }
     }
     
