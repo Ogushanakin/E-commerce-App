@@ -74,6 +74,7 @@
 		211CCBA52C565FEB00DA1983 /* PaymentSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBA42C565FEB00DA1983 /* PaymentSDK.swift */; };
 		211CCBA72C56601300DA1983 /* PaymentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBA62C56601300DA1983 /* PaymentDetailsViewController.swift */; };
 		211CCBAA2C56645A00DA1983 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211CCBA92C56645A00DA1983 /* OTPController.swift */; };
+		211CCBC22C56897D00DA1983 /* loadingCircle.json in Resources */ = {isa = PBXBuildFile; fileRef = 211CCBB22C56897D00DA1983 /* loadingCircle.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,7 @@
 		211CCBA42C565FEB00DA1983 /* PaymentSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSDK.swift; sourceTree = "<group>"; };
 		211CCBA62C56601300DA1983 /* PaymentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailsViewController.swift; sourceTree = "<group>"; };
 		211CCBA92C56645A00DA1983 /* OTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
+		211CCBB22C56897D00DA1983 /* loadingCircle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingCircle.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 		211CCB002C5431FB00DA1983 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				211CCBB22C56897D00DA1983 /* loadingCircle.json */,
 				211CCAF32C54315700DA1983 /* Assets.xcassets */,
 				211CCAF52C54315700DA1983 /* LaunchScreen.storyboard */,
 			);
@@ -645,6 +648,7 @@
 			files = (
 				211CCAF42C54315700DA1983 /* Assets.xcassets in Resources */,
 				211CCAF72C54315700DA1983 /* Base in Resources */,
+				211CCBC22C56897D00DA1983 /* loadingCircle.json in Resources */,
 				211CCB402C54431400DA1983 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
