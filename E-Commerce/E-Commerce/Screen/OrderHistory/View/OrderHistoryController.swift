@@ -27,6 +27,14 @@ final class OrderHistoryController: UIViewController {
         orderHistoryViewModel.fetchOrderHistory()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        orderHistoryViewModel.fetchOrderHistory()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            self.orderHistoryView.orderHistoryCollection.reloadData()
+        })
+    }
+    
     // MARK: - Configure ViewController
     
     private func configureViewController() {
@@ -71,7 +79,7 @@ extension OrderHistoryController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: orderHistoryView.orderHistoryCollection.frame.width - 30, height: 150)
+        return CGSize(width: orderHistoryView.orderHistoryCollection.frame.width - 30, height: 200)
     }
 }
 

@@ -25,6 +25,7 @@ final class OrderCollectionCell: UICollectionViewCell {
     
     private var orderDateLabel = CustomLabel(text: "", numberOfLines: 1, font: .boldSystemFont(ofSize: 15), textColor: .black, textAlignment: .left)
     private var productListStackView = CustomStackView(axis: .vertical, distiribution: .fillEqually, spacing: 5, isHidden: false)
+    private var totalPriceLabel = CustomLabel(text: "", numberOfLines: 1, font: .boldSystemFont(ofSize: 15), textColor: .black, textAlignment: .right)
     
     // MARK: - Init methods
     
@@ -46,13 +47,19 @@ final class OrderCollectionCell: UICollectionViewCell {
         orderDateLabel.text = data.orderDate
         productListStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
+        var totalPrice: Double = 0.0
         for product in data.products {
             let productTitle = product.title ?? "Unknown"
             let productQuantity = product.quantity ?? 0
             let productPrice = product.price ?? 0.0
-            let productLabel = CustomLabel(text: "\(productTitle) - \(productQuantity) x $\(productPrice)", numberOfLines: 1, font: .systemFont(ofSize: 14), textColor: .black, textAlignment: .left)
+            totalPrice += (Double(productQuantity) * productPrice)
+            let formattedProductPrice = String(format: "%.2f", productPrice)
+            let productLabel = CustomLabel(text: "\(productTitle) - \(productQuantity) x $\(formattedProductPrice)", numberOfLines: 1, font: .systemFont(ofSize: 14), textColor: .black, textAlignment: .left)
             productListStackView.addArrangedSubview(productLabel)
         }
+        
+        let formattedTotalPrice = String(format: "%.2f", totalPrice)
+        totalPriceLabel.text = "Total: $\(formattedTotalPrice)"
     }
 }
 
@@ -63,7 +70,7 @@ extension OrderCollectionCell {
     // MARK: - AddSubview
     
     private func addSubview() {
-        addSubviews(orderDateLabel, productListStackView)
+        addSubviews(orderDateLabel, productListStackView, totalPriceLabel)
     }
     
     // MARK: - Setup Constraints
@@ -71,6 +78,7 @@ extension OrderCollectionCell {
     private func setupConstraints() {
         orderDateLabelConstraints()
         productListStackViewConstraints()
+        totalPriceLabelConstraints()
     }
     
     private func orderDateLabelConstraints() {
@@ -84,6 +92,14 @@ extension OrderCollectionCell {
         productListStackView.snp.makeConstraints { make in
             make.top.equalTo(orderDateLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(10)
+        }
+    }
+    
+    private func totalPriceLabelConstraints() {
+        totalPriceLabel.snp.makeConstraints { make in
+            make.top.equalTo(productListStackView.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
             make.bottom.equalToSuperview().offset(-10)
         }
     }
