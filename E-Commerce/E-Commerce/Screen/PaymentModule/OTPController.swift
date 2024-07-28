@@ -11,7 +11,7 @@ import SnapKit
 class OTPViewController: UIViewController, UITextFieldDelegate {
     
     var onOTPVerified: ((Bool) -> Void)?
-
+    
     private let otpStackView = UIStackView()
     private let confirmPaymentButton = UIButton()
     private var otpTextFields = [UITextField]()
@@ -45,7 +45,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(confirmPaymentButton)
         
         setupConstraints()
-}
+    }
     
     private func createOTPTextField() -> UITextField {
         let textField = UITextField()
@@ -86,7 +86,6 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
     
     @objc private func confirmPayment() {
         let otp = otpTextFields.map { $0.text ?? "" }.joined()
@@ -101,9 +100,9 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                 switch result {
                 case .success:
                     self?.onOTPVerified?(true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         self?.navigationController?.popToRootViewController(animated: true)
-                    })
+                    }
                 case .failure(let error):
                     self?.showAlert(message: error.localizedDescription)
                     self?.onOTPVerified?(false)

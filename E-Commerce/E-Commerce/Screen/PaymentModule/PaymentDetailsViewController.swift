@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class PaymentDetailsViewController: UIViewController {
+class PaymentDetailsViewController: UIViewController, UITextFieldDelegate {
     
     var onPaymentInitiated: (() -> Void)?
     
@@ -21,6 +21,7 @@ class PaymentDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        updateButtonState()
     }
     
     private func setupUI() {
@@ -29,6 +30,8 @@ class PaymentDetailsViewController: UIViewController {
         let textFields = [cardNumberTextField, expiryDateTextField, cvvTextField]
         textFields.forEach { textField in
             textField.borderStyle = .roundedRect
+            textField.delegate = self
+            textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             view.addSubview(textField)
         }
         view.addSubview(amountLabel)
@@ -40,7 +43,7 @@ class PaymentDetailsViewController: UIViewController {
         
         startPaymentButton.setTitle("Start Payment", for: .normal)
         startPaymentButton.setTitleColor(.white, for: .normal)
-        startPaymentButton.backgroundColor = .blue
+        startPaymentButton.backgroundColor = .lightGray // Başlangıçta butonu devre dışı bırak
         startPaymentButton.layer.cornerRadius = 5
         startPaymentButton.addTarget(self, action: #selector(startPayment), for: .touchUpInside)
         view.addSubview(startPaymentButton)
@@ -81,6 +84,19 @@ class PaymentDetailsViewController: UIViewController {
         }
     }
     
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        updateButtonState()
+    }
+    
+    private func updateButtonState() {
+        let cardNumberIsValid = !(cardNumberTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true)
+        let expiryDateIsValid = !(expiryDateTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true)
+        let cvvIsValid = !(cvvTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true)
+        
+        startPaymentButton.isEnabled = cardNumberIsValid && expiryDateIsValid && cvvIsValid
+        startPaymentButton.backgroundColor = startPaymentButton.isEnabled ? .blue : .lightGray
+    }
+    
     @objc private func startPayment() {
         guard let cardNo = cardNumberTextField.text,
               let expDate = expiryDateTextField.text,
@@ -89,7 +105,7 @@ class PaymentDetailsViewController: UIViewController {
             return
         }
         
-        PaymentSDK.shared.startPayment(cardNo: cardNo, expDate: expDate, cvv: cvv, amount: amountLabel.text!) { [weak self] result in
+        PaymentSDK.shared.startPayment(cardNo: cardNo, expDate: expDate, cvv: cvv, amount: amountLabel.text ?? "") { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
